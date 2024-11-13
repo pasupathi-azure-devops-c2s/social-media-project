@@ -38,3 +38,4 @@ spec:
       port: 80  # Port exposed by the service
       targetPort: 80  # Port on which the container listens
   type: LoadBalancer  # You can change this to ClusterIP or NodePort depending on your use case
+
