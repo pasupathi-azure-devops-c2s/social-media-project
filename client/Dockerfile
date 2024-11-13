@@ -16,12 +16,8 @@ COPY . .
 # Step 6: Build the Angular application
 RUN yarn build --prod
 
-<<<<<<< HEAD
 # Step 7: Set up a lightweight web server to serve the Angular app
 FROM nginx:alpine
-=======
-ENV NODE_ENV=production
->>>>>>> cc3c01b2b00136a100c7675b70e3de069c7db2f5
 
 # Step 8: Copy the build artifacts from the previous stage
 COPY --from=build /app/dist/your-angular-app /usr/share/nginx/html
