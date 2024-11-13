@@ -18,7 +18,7 @@ spec:
         - name: node-app
           image: akscr01sample.azurecr.io/social-media-client:latest  # ACR image reference
           ports:
-            - containerPort: 5000
+            - containerPort: 80
           env:
             - name: NODE_ENV
               value: "production"  # Optional: You can keep or modify this environment variable
@@ -36,5 +36,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80  # Port exposed by the service
-      targetPort: 5000  # Port on which the container listens
+      targetPort: 80  # Port on which the container listens
   type: LoadBalancer  # You can change this to ClusterIP or NodePort depending on your use case
