@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment
+  labels:
+    app: node-app
+spec:
+  replicas: 3  # Number of replicas/pods to run
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: node-app
+          image: akscr01sample.azurecr.io/social-media-client:latest  # ACR image reference
+          ports:
+            - containerPort: 5000
+          env:
+            - name: NODE_ENV
+              value: "production"  # Optional: You can keep or modify this environment variable
+      # Optionally use the secret to authenticate to ACR
+      imagePullSecrets:
+        - name: acr-secret  # Name of the secret created in Step 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-service
+spec:
+  selector:
+    app: node-app
+  ports:
+    - protocol: TCP
+      port: 80  # Port exposed by the service
+      targetPort: 5000  # Port on which the container listens
+  type: LoadBalancer  # You can change this to ClusterIP or NodePort depending on your use case
