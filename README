@@ -1,0 +1,25 @@
+|MEAN-DevOps-Project
+|- client 
+|- - README.md  package-lock.json  package.json  public/  src/  yarn.lock
+|
+|- server
+|- - controllers/  index.js  middleware/  models/  package-lock.json  package.json  public/  routes/
+|
+|- socket
+|- - index.js  package-lock.json  package.json
+
+
+Steps to run the project
+
+Install dependencies:
+
+cd client && npm install (or yarn install) && npm audit fix --force && npm install react-scripts@latest webpack@latest
+cd server && npm install (or yarn install) && npm audit fix --force
+cd socket && npm install (or yarn install) && npm audit fix --force
+
+
+Start servers:
+
+cd server && npm start (or node index.js if no start script)
+cd client && ng serve (or npm start)
+cd socket && node index.js
