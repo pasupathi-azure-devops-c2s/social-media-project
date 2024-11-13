@@ -1,29 +1,29 @@
-# Stage 1: Build Stage
+# Step 1: Use official Node.js image for building the frontend
 FROM node:18 AS build
 
-# Set the working directory inside the container
+# Step 2: Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and yarn.lock (or package-lock.json) into the container
+# Step 3: Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install dependencies (yarn or npm)
-RUN npm install  # or 'npm install' if you're using npm
+# Step 4: Install the project dependencies using npm
+RUN npm install
 
-# Copy all the source files to the container
+# Step 5: Copy the rest of the source code into the container
 COPY . .
 
-# Build the frontend (assuming it's a React/Vue app)
-RUN npm run build  # or 'npm run build' for React/Vue.js
+# Step 6: Build the React app (or any frontend app)
+RUN npm run build
 
-# Stage 2: Nginx Stage
+# Step 7: Use the official Nginx image to serve the frontend
 FROM nginx:alpine
 
-# Copy the built frontend files from the build stage to Nginx's public directory
-COPY --from=build /app/build /usr/share/nginx/html  # For React, it\'s 'build' folder, for Vue.js, it\'s 'dist'
+# Step 8: Copy the build output from the previous build stage to Nginx's public directory
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose the port that Nginx is listening on
+# Step 9: Expose the port Nginx is listening on (default is 80)
 EXPOSE 80
 
-# Run Nginx in the foreground (required for Docker container to keep running)
+# Step 10: Run Nginx in the foreground to serve the app
 CMD ["nginx", "-g", "daemon off;"]
