@@ -8,13 +8,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (yarn or npm)
-RUN yarn install  # or 'npm install' if you're using npm
+RUN npm install  # or 'npm install' if you're using npm
 
 # Copy all the source files to the container
 COPY . .
 
 # Build the frontend (assuming it's a React/Vue app)
-RUN yarn build  # or 'npm run build' for React/Vue.js
+RUN npm run build  # or 'npm run build' for React/Vue.js
 
 # Stage 2: Nginx Stage
 FROM nginx:alpine
