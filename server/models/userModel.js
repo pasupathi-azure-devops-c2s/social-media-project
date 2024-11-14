@@ -37,3 +37,18 @@ const UserSchema = mongoose.Schema(
 
 const UserModel = mongoose.model("Users", UserSchema);
 export default UserModel;
+/*
+
+// models/User.js
+import mongoose from 'mongoose';
+
+const userSchema = mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+});
+
+const User = mongoose.model('User', userSchema);
+
+export default User;
+*/
