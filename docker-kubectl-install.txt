@@ -62,5 +62,6 @@ Steps to deploy the project:
 2. Deploy to the aks cluster
 
     az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
-    kubectl apply -f deployment.yml
+    kubectl apply -f client-deployment.yml
+    kubectl apply -f server-deployment.yml
 
