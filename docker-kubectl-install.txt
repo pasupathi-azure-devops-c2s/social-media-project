@@ -51,18 +51,18 @@ sudo chmod +x /usr/local/bin/docker-compose
 Steps to deploy the project:
 
 1. Docker image build and push
-    cd client && docker build -t social-media-client:latest .
-    cd .. && cd server && docker build -t social-media-server:latest . && cd ..
+    cd client && docker build -t client:latest .
+    cd .. && cd server && docker build -t server:latest . && cd ..
 
     docker-compose up --build
     
     az login
     az acr login --name akscr01sample
 
-    docker tag social-media-client:latest akscr01sample.azurecr.io/social-media-client:latest
+    docker tag social-media-client:latest akscr01sample.azurecr.io/client:latest
     docker push akscr01sample.azurecr.io/social-media-client:latest
 
-    docker tag social-media-server:latest akscr01sample.azurecr.io/social-media-server:latest
+    docker tag social-media-server:latest akscr01sample.azurecr.io/server:latest
     docker push akscr01sample.azurecr.io/social-media-server:latest
 
 
@@ -71,4 +71,5 @@ Steps to deploy the project:
     az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
     kubectl apply -f client-deployment.yml
     kubectl apply -f server-deployment.yml
+    kubectl apply -f socket-deployment.yml
 
