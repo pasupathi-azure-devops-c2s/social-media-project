@@ -1,82 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: social-media-client-deployment
+  name: node-app-deployment
   labels:
-    app: social-media-client
+    app: node-app
 spec:
-  replicas: 3  # Number of client app replicas/pods to run
+  replicas: 3  # Number of replicas/pods to run
   selector:
     matchLabels:
-      app: social-media-client
+      app: node-app
   template:
     metadata:
       labels:
-        app: social-media-client
+        app: node-app
     spec:
       containers:
-        - name: social-media-client
-          image: akscr01sample.azurecr.io/social-media-client:latest  # Replace with your actual ACR image reference
+        - name: node-app
+          image: akscr01sample.azurecr.io/social-media-client:latest  # ACR image reference
           ports:
-            - containerPort: 3000  # Expose port 3000 (or the port your app uses)
+            - containerPort: 3000
           env:
             - name: NODE_ENV
-              value: "production"  # Optional: Environment variable to set NODE_ENV
+              value: "production"  # Optional: You can keep or modify this environment variable
+      # Optionally use the secret to authenticate to ACR
       imagePullSecrets:
-        - name: acr-secret  # Ensure this secret exists for ACR authentication (if required)
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: social-media-server-deployment
-  labels:
-    app: social-media-server
-spec:
-  replicas: 3  # Number of server app replicas/pods to run
-  selector:
-    matchLabels:
-      app: social-media-server
-  template:
-    metadata:
-      labels:
-        app: social-media-server
-    spec:
-      containers:
-        - name: social-media-server
-          image: akscr01sample.azurecr.io/social-media-server:latest  # Replace with your actual ACR image reference
-          ports:
-            - containerPort: 5000  # Expose port 5001 (or the port your server uses)
-          env:
-            - name: NODE_ENV
-              value: "production"  # Optional: Environment variable to set NODE_ENV
-      imagePullSecrets:
-        - name: acr-secret  # Ensure this secret exists for ACR authentication (if required)
-
+        - name: acr-secret  # Name of the secret created in Step 1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: social-media-client-service
+  name: node-app-service
 spec:
   selector:
-    app: social-media-client  # This selector matches the client deployment pods
+    app: node-app
   ports:
     - protocol: TCP
       port: 3000  # Port exposed by the service
-      targetPort: 3000  # Port on the container the service forwards to
-  type: LoadBalancer  # Optional: Change to ClusterIP or NodePort if external access is not required
+      targetPort: 3000  # Port on which the container listens
+  type: LoadBalancer  # You can change this to ClusterIP or NodePort depending on your use case
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: social-media-server-service
-spec:
-  selector:
-    app: social-media-server  # This selector matches the server deployment pods
-  ports:
-    - protocol: TCP
-      port: 5000  # Port exposed by the service
-      targetPort: 5000  # Port on the container the service forwards to
-  type: LoadBalancer  # Optional: Change to ClusterIP or NodePort if external access is not required

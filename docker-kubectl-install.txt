@@ -46,8 +46,8 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 Steps to deploy the project:
 
 1. Docker image build and push
-    docker build -t social-media-client:latest .
-    docker build -t social-media-server:latest .
+    cd client && docker build -t social-media-client:latest .
+    cd .. && cd server && docker build -t social-media-server:latest .
     
     az login
     az acr login --name akscr01sample
