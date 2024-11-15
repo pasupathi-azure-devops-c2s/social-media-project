@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-media-client-deployment
+  labels:
+    app: social-media-client
+spec:
+  replicas: 3  # Number of frontend replicas/pods to run
+  selector:
+    matchLabels:
+      app: social-media-client
+  template:
+    metadata:
+      labels:
+        app: social-media-client
+    spec:
+      containers:
+        - name: social-media-client
+          image: akscr01sample.azurecr.io/social-media-client:latest  # ACR image reference for frontend
+          ports:
+            - containerPort: 3000  # Port that the React app will listen on
+          env:
+            - name: NODE_ENV
+              value: "production"  # Environment variable
+      imagePullSecrets:
+        - name: acr-secret  # Ensure this secret exists for ACR authentication if needed
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-media-client-service
+spec:
+  selector:
+    app: social-media-client  # Matches the label in the deployment
+  ports:
+    - protocol: TCP
+      port: 3000  # Exposes port 3000 externally
+      targetPort: 3000  # Exposes port 3000 internally to the container
+  type: LoadBalancer  # Expose via LoadBalancer or NodePort for external access

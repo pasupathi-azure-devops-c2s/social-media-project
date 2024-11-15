@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-media-server-deployment
+  labels:
+    app: social-media-server
+spec:
+  replicas: 3  # Number of backend replicas/pods to run
+  selector:
+    matchLabels:
+      app: social-media-server
+  template:
+    metadata:
+      labels:
+        app: social-media-server
+    spec:
+      containers:
+        - name: social-media-server
+          image: akscr01sample.azurecr.io/social-media-server:latest  # ACR image reference for backend
+          ports:
+            - containerPort: 5000  # Port the API listens on
+          env:
+            - name: NODE_ENV
+              value: "production"  # Optional: You can modify this environment variable as needed
+      imagePullSecrets:
+        - name: acr-secret  # Ensure this secret exists for ACR authentication if needed
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-media-server-service
+spec:
+  selector:
+    app: social-media-server  # Matches the label in the deployment
+  ports:
+    - protocol: TCP
+      port: 5000  # Expose API on port 5000
+      targetPort: 5000  # Forward traffic to container's port 5000
+  type: LoadBalancer  # Expose via LoadBalancer for external access (you can also use ClusterIP or NodePort)

@@ -47,7 +47,7 @@ Steps to deploy the project:
 
 1. Docker image build and push
     cd client && docker build -t social-media-client:latest .
-    cd .. && cd server && docker build -t social-media-server:latest .
+    cd .. && cd server && docker build -t social-media-server:latest . && cd ..
     
     az login
     az acr login --name akscr01sample
