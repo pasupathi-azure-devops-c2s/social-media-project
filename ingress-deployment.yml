@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: social-media-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: <EXTERNAL-IP>  # Replace with the external IP of your Ingress Controller
+      http:
+        paths:
+          - path: /client
+            pathType: Prefix
+            backend:
+              service:
+                name: social-media-client-service
+                port:
+                  number: 80
+          - path: /server
+            pathType: Prefix
+            backend:
+              service:
+                name: social-media-server-service
+                port:
+                  number: 80
+          - path: /socket
+            pathType: Prefix
+            backend:
+              service:
+                name: social-media-socket-service
+                port:
+                  number: 80

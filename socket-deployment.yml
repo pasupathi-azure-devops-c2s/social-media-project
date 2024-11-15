@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: social-media-socket-service
+spec:
+  selector:
+    app: social-media-socket
+  ports:
+    - protocol: TCP
+      port: 80   # External port for socket service
+      targetPort: 5001  # Container port
+  type: ClusterIP  # ClusterIP instead of LoadBalancer
