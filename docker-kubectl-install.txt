@@ -45,6 +45,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 Steps to deploy the project:
 
 1. Docker image build and push
+    git clone https://github.com/pasupathi-azure-devops-c2s/social-media-project.git
+    
     cd client && docker build -t client:latest . && cd .. && cd server && docker build -t server:latest . && cd .. && cd socket && docker build -t socket:latest . && cd ..
 
     docker-compose up --build

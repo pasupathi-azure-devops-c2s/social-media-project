@@ -10,7 +10,7 @@ COPY . .
 
 EXPOSE 5000
 
-ENV NODE_ENV server
+ENV NODE_ENV=server
 
 CMD [ "npm", "start" ]
 
