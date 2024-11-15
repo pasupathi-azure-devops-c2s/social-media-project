@@ -55,13 +55,12 @@ Steps to deploy the project:
     az acr login --name akscr01sample
 
     docker tag client:latest akscr01sample.azurecr.io/client:latest
-    docker push akscr01sample.azurecr.io/client:latest
-
-    docker tag server:latest akscr01sample.azurecr.io/server:latest
-    docker push akscr01sample.azurecr.io/server:latest
-
     docker tag socket:latest akscr01sample.azurecr.io/socket:latest
-    docker push akscr01sample.azurecr.io/socket:latest
+    docker tag server:latest akscr01sample.azurecr.io/server:latest
+
+    docker push akscr01sample.azurecr.io/client:latest && docker push akscr01sample.azurecr.io/server:latest && docker push akscr01sample.azurecr.io/socket:latest
+
+    
 
 
 2. Deploy to the aks cluster
