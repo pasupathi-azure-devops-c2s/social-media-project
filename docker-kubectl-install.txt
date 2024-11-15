@@ -45,9 +45,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 Steps to deploy the project:
 
 1. Docker image build and push
-    cd client && docker build -t client:latest .
-    cd .. && cd server && docker build -t server:latest .
-    cd .. && cd socket && docker build -t socket:latest . && cd ..
+    cd client && docker build -t client:latest . && cd .. && cd server && docker build -t server:latest . && cd .. && cd socket && docker build -t socket:latest . && cd ..
 
     docker-compose up --build
     
