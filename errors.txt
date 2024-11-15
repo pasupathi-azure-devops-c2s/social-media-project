@@ -1,0 +1,68 @@
+POST http://localhost:5000/auth/login net::ERR_CONNECTION_REFUSED
+dispatchXhrRequest @ xhr.js:220
+xhrAdapter @ xhr.js:16
+dispatchRequest @ dispatchRequest.js:58
+request @ Axios.js:109
+httpMethod @ Axios.js:144
+wrap @ bind.js:9
+logIn @ AuthRequests.js:6
+(anonymous) @ AuthActions.js:5
+(anonymous) @ index.js:16
+handleSubmit @ Auth.jsx:47
+callCallback @ react-dom.development.js:3945
+invokeGuardedCallbackDev @ react-dom.development.js:3994
+invokeGuardedCallback @ react-dom.development.js:4056
+invokeGuardedCallbackAndCatchFirstError @ react-dom.development.js:4070
+executeDispatch @ react-dom.development.js:8243
+processDispatchQueueItemsInOrder @ react-dom.development.js:8275
+processDispatchQueue @ react-dom.development.js:8288
+dispatchEventsForPlugins @ react-dom.development.js:8299
+(anonymous) @ react-dom.development.js:8508
+batchedEventUpdates$1 @ react-dom.development.js:22396
+batchedEventUpdates @ react-dom.development.js:3745
+dispatchEventForPluginEventSystem @ react-dom.development.js:8507
+attemptToDispatchEvent @ react-dom.development.js:6005
+dispatchEvent @ react-dom.development.js:5924
+unstable_runWithPriority @ scheduler.development.js:468
+runWithPriority$1 @ react-dom.development.js:11276
+discreteUpdates$1 @ react-dom.development.js:22413
+discreteUpdates @ react-dom.development.js:3756
+dispatchDiscreteEvent @ react-dom.development.js:5889
+Show 26 more frames
+Show less
+AuthActions.js:9 AxiosError {message: 'Network Error', name: 'AxiosError', code: 'ERR_NETWORK', config: {…}, request: XMLHttpRequest, …}
+AuthRequests.js:6 
+        
+        
+        POST http://localhost:5000/auth/login net::ERR_CONNECTION_REFUSED
+dispatchXhrRequest @ xhr.js:220
+xhrAdapter @ xhr.js:16
+dispatchRequest @ dispatchRequest.js:58
+request @ Axios.js:109
+httpMethod @ Axios.js:144
+wrap @ bind.js:9
+logIn @ AuthRequests.js:6
+(anonymous) @ AuthActions.js:5
+(anonymous) @ index.js:16
+handleSubmit @ Auth.jsx:47
+callCallback @ react-dom.development.js:3945
+invokeGuardedCallbackDev @ react-dom.development.js:3994
+invokeGuardedCallback @ react-dom.development.js:4056
+invokeGuardedCallbackAndCatchFirstError @ react-dom.development.js:4070
+executeDispatch @ react-dom.development.js:8243
+processDispatchQueueItemsInOrder @ react-dom.development.js:8275
+processDispatchQueue @ react-dom.development.js:8288
+dispatchEventsForPlugins @ react-dom.development.js:8299
+(anonymous) @ react-dom.development.js:8508
+batchedEventUpdates$1 @ react-dom.development.js:22396
+batchedEventUpdates @ react-dom.development.js:3745
+dispatchEventForPluginEventSystem @ react-dom.development.js:8507
+attemptToDispatchEvent @ react-dom.development.js:6005
+dispatchEvent @ react-dom.development.js:5924
+unstable_runWithPriority @ scheduler.development.js:468
+runWithPriority$1 @ react-dom.development.js:11276
+discreteUpdates$1 @ react-dom.development.js:22413
+discreteUpdates @ react-dom.development.js:3756
+dispatchDiscreteEvent @ react-dom.development.js:5889
+Show 26 more frames
+Show less
