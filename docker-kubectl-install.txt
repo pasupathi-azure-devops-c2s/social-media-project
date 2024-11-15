@@ -68,3 +68,5 @@ Steps to deploy the project:
     kubectl apply -f server-deployment.yml
     kubectl apply -f socket-deployment.yml
 
+
+docker rmi -f $(docker images -q)
