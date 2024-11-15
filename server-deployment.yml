@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: server-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: server
@@ -18,10 +18,8 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: MONGO_URI
-              value: "mongodb+srv://Pasupathikumar:Mspk1234@facedetection.g4nbyn9.mongodb.net/C2S-Azure-DevOps-Project?retryWrites=true&w=majority"  # Replace with actual MongoDB URI
-            - name: SOCKET_SERVER_URL
-              value: "http://socket-service:3000"  # Adjust if needed
+            - name: NODE_ENV
+              value: "server"
 ---
 apiVersion: v1
 kind: Service
@@ -34,4 +32,4 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-  type: ClusterIP  # Internal service, only accessible within the cluster
+  type: ClusterIP  # Internal service (no external IP)

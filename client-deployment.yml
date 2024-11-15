@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: client-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: client
@@ -16,10 +16,10 @@ spec:
         - name: client
           image: akscr01sample.azurecr.io/client:latest
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
-            - name: REACT_APP_API_URL
-              value: "http://server-service:5000"  # Adjust if the backend server's URL needs to be set
+            - name: NODE_ENV
+              value: "client"
 ---
 apiVersion: v1
 kind: Service
@@ -32,4 +32,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer  # This makes the service accessible externally
+  type: LoadBalancer  # This creates an external IP for the client service
