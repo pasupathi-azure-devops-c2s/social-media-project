@@ -40,14 +40,27 @@ sudo snap install kubectl --classic
 
 sudo apt update
 
-sudo apt install ca-certificates curl apt-transport-https lsb-release gnupg
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
 
-sudo apt update
+Steps to deploy the project:
 
-sudo apt install azure-cli
+1. Docker image build and push
+    docker build -t social-media-client:latest .
+    docker build -t social-media-server:latest .
+    
+    az login
+    az acr login --name akscr01sample
 
-az aks get-credentials --resource-group <resource-group> --name <aks-cluster-name>
+    docker tag social-media-client:latest akscr01sample.azurecr.io./social-media-client:latest
+    docker push akscr01sample.azurecr.io./social-media-client:latest
 
+    docker tag social-media-server:latest akscr01sample.azurecr.io./social-media-server:latest
+    docker push akscr01sample.azurecr.io./social-media-server:latest
+
+
+2. Deploy to the aks cluster
+
+    az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
+    kubectl apply -f deployment.yml
 
