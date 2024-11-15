@@ -53,10 +53,10 @@ Steps to deploy the project:
     az acr login --name akscr01sample
 
     docker tag social-media-client:latest akscr01sample.azurecr.io/social-media-client:latest
-    docker push akscr01sample.azurecr.io./social-media-client:latest
+    docker push akscr01sample.azurecr.io/social-media-client:latest
 
     docker tag social-media-server:latest akscr01sample.azurecr.io/social-media-server:latest
-    docker push akscr01sample.azurecr.io./social-media-server:latest
+    docker push akscr01sample.azurecr.io/social-media-server:latest
 
 
 2. Deploy to the aks cluster
