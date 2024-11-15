@@ -62,7 +62,7 @@ app.use('/message', MessageRoute);
 // Start the server after DB connection is successful
 const startServer = async () => {
   await connectDB();
-  const PORT = process.env.PORT;
+  const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });

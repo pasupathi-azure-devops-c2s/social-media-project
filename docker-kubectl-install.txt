@@ -66,9 +66,9 @@ Steps to deploy the project:
 2. Deploy to the aks cluster
 
     az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
-    kubectl apply -f client-deployment.yml
-    kubectl apply -f server-deployment.yml
-    kubectl apply -f socket-deployment.yml
+    kubectl apply -f client-deployment.yml --validate=false
+    kubectl apply -f server-deployment.yml --validate=false
+    kubectl apply -f socket-deployment.yml --validate=false
 
 
 docker rmi -f $(docker images -q)
