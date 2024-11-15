@@ -1,40 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: social-media-server-deployment
-  labels:
-    app: social-media-server
+  name: server-deployment
 spec:
-  replicas: 3  # Number of backend replicas/pods to run
+  replicas: 2
   selector:
     matchLabels:
-      app: social-media-server
+      app: server
   template:
     metadata:
       labels:
-        app: social-media-server
+        app: server
     spec:
       containers:
-        - name: social-media-server
-          image: akscr01sample.azurecr.io/server:latest  # ACR image reference for backend
+        - name: server
+          image: akscr01sample.azurecr.io/server:latest
           ports:
-            - containerPort: 5000  # Port the API listens on
+            - containerPort: 5000
           env:
-            - name: NODE_ENV
-              value: "production"  # Optional: You can modify this environment variable as needed
-      imagePullSecrets:
-        - name: acr-secret  # Ensure this secret exists for ACR authentication if needed
-
+            - name: MONGO_URI
+              value: "mongodb+srv://Pasupathikumar:Mspk1234@facedetection.g4nbyn9.mongodb.net/C2S-Azure-DevOps-Project?retryWrites=true&w=majority"  # Replace with actual MongoDB URI
+            - name: SOCKET_SERVER_URL
+              value: "http://socket-service:3000"  # Adjust if needed
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: social-media-server-service
+  name: server-service
 spec:
   selector:
-    app: social-media-server  # Matches the label in the deployment
+    app: server
   ports:
     - protocol: TCP
-      port: 5000  # Expose API on port 5000
-      targetPort: 5000  # Forward traffic to container's port 5000
-  type: LoadBalancer  # Expose via LoadBalancer for external access (you can also use ClusterIP or NodePort)
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP  # Internal service, only accessible within the cluster

@@ -1,40 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: social-media-socket
-  labels:
-    app: social-media-socket
+  name: socket-deployment
 spec:
-  replicas: 3  # Number of backend replicas/pods to run
+  replicas: 2
   selector:
     matchLabels:
-      app: social-media-socket
+      app: socket
   template:
     metadata:
       labels:
-        app: social-media-socket
+        app: socket
     spec:
       containers:
-        - name: social-media-socket
-          image: akscr01sample.azurecr.io/socket:latest  # ACR image reference for backend
+        - name: socket
+          image: akscr01sample.azurecr.io/socket:latest
           ports:
-            - containerPort: 5001  # Port the API listens on
-          env:
-            - name: NODE_ENV
-              value: "production"  # Optional: You can modify this environment variable as needed
-      imagePullSecrets:
-        - name: acr-secret  # Ensure this secret exists for ACR authentication if needed
-
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: social-media-socket
+  name: socket-service
 spec:
   selector:
-    app: social-media-socket  # Matches the label in the deployment
+    app: socket
   ports:
     - protocol: TCP
-      port: 5001  # Expose API on port 5000
-      targetPort: 5001  # Forward traffic to container's port 5000
-  type: LoadBalancer  # Expose via LoadBalancer for external access (you can also use ClusterIP or NodePort)
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP  # Internal service
