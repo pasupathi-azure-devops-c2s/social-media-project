@@ -45,30 +45,32 @@ sudo chmod +x /usr/local/bin/docker-compose
 Steps to deploy the project:
 
 1. Docker image build and push
-    git clone https://github.com/pasupathi-azure-devops-c2s/social-media-project.git
+
+git clone https://github.com/pasupathi-azure-devops-c2s/social-media-project.git
     
-    cd client && docker build -t client:latest . && cd .. && cd server && docker build -t server:latest . && cd .. && cd socket && docker build -t socket:latest . && cd ..
+cd client && docker build -t client:latest . && cd .. && cd server && docker build -t server:latest . && cd .. && cd socket && docker build -t socket:latest . && cd ..
 
-    docker-compose up --build
+docker-compose up --build
     
-    az login
-    az acr login --name akscr01sample
+az login
+    
+az acr login --name akscr01sample
 
-    docker tag client:latest akscr01sample.azurecr.io/client:latest
-    docker tag socket:latest akscr01sample.azurecr.io/socket:latest
-    docker tag server:latest akscr01sample.azurecr.io/server:latest
+docker tag client:latest akscr01sample.azurecr.io/client:latest
+docker tag socket:latest akscr01sample.azurecr.io/socket:latest
+docker tag server:latest akscr01sample.azurecr.io/server:latest
 
-    docker push akscr01sample.azurecr.io/client:latest && docker push akscr01sample.azurecr.io/server:latest && docker push akscr01sample.azurecr.io/socket:latest
+docker push akscr01sample.azurecr.io/client:latest && docker push akscr01sample.azurecr.io/server:latest && docker push akscr01sample.azurecr.io/socket:latest
 
     
 
 
 2. Deploy to the aks cluster
 
-    az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
-    kubectl apply -f client-deployment.yml --validate=false
-    kubectl apply -f server-deployment.yml --validate=false
-    kubectl apply -f socket-deployment.yml --validate=false
+az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
+kubectl apply -f client-deployment.yml --validate=false
+kubectl apply -f server-deployment.yml --validate=false
+kubectl apply -f socket-deployment.yml --validate=false
 
 
 docker rmi -f $(docker images -q)
