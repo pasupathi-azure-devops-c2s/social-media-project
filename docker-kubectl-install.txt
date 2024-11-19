@@ -74,3 +74,5 @@ kubectl apply -f socket-deployment.yml --validate=false
 
 
 docker rmi -f $(docker images -q)
+
+docker system prune -af
