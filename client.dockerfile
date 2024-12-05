@@ -19,4 +19,4 @@ RUN yarn build --prod
 
 EXPOSE 3000
 
-ENTRYPOINT [ "yarn", "Start" ]
+ENTRYPOINT [ "yarn", "start" ]
