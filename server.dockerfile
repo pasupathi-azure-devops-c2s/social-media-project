@@ -6,7 +6,8 @@ WORKDIR /app/ZKU-Social-Media-server
 
 # Copy the package.json and yarn.lock files
 COPY ./server/package*.json ./
-COPY ./server/yarn.lock ./
+COPY ./server/index.js ./
+COPY ./server/server.js ./
 
 # Install dependencies
 RUN yarn install
