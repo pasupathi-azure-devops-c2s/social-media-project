@@ -56,6 +56,8 @@ az acr login --name akscr01sample
 
 az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
 
+kubectl create secret docker-registry acr-secret --docker-server=aksacr01sample.azurecr.io --docker-username=Pasupathikumar --docker-password=NewPassword1234 --docker-email=kumarmarimuthu99@gmail.com
+
 docker tag server:latest akscr01sample.azurecr.io/server:latest
 
 docker push akscr01sample.azurecr.io/server:latest 
