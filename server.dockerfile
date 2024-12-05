@@ -20,4 +20,4 @@ RUN yarn build --prod
 
 EXPOSE 5000
 
-ENTRYPOINT [ "yarn", "start" ]
+ENTRYPOINT [ "yarn", "server.js" ]
