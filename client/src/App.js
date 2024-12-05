@@ -13,7 +13,7 @@ function App() {
       className="App"
       style={{
         height:
-          window.location.href === "http://3.110.56.89:3000/chat"
+          window.location.href === "http://65.0.138.126:3000/chat"
             ? "calc(100vh - 2rem)"
             : "auto",
       }}
