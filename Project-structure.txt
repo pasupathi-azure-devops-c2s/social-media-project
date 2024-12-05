@@ -1,0 +1,9 @@
+|MEAN-DevOps-Project
+|- client 
+|- - README.md  package-lock.json  package.json  public/  src/  yarn.lock Dockerfile
+|
+|- server
+|- - controllers/  index.js  middleware/  models/  package-lock.json  package.json  public/  routes/ Dockerfile
+|
+|- socket
+|- - index.js  package-lock.json  package.json

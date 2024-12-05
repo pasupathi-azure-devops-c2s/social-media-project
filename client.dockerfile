@@ -1,13 +1,22 @@
-FROM node:18
+# Step 1: Build the Angular application using Node.js
+FROM node:18 AS build
 
-COPY ./client/package*.json ./app/ZKC-Social-Media/
+# Set the working directory
+WORKDIR /app/ZKU-Social-Media
 
-WORKDIR ./app/ZKC-Social-Media/
+# Copy the package.json and yarn.lock files
+COPY ./client/package*.json ./app/ZKU-Social-Media
+COPY ./client/yarn.lock ./app/ZKU-Social-Media
 
-RUN npm install
+# Install dependencies
+RUN yarn install
+
+# Copy the entire client source code
+COPY ./client/ ./
+
+# Build the Angular application
+RUN yarn build --prod
 
 EXPOSE 3000
 
-ENV NODE_ENV=client
-
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT [ "yarn", "Start" ]
