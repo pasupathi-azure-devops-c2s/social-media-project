@@ -34,6 +34,8 @@ sudo apt update
 
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
+4. Install Docker Compose
+
 sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
@@ -46,34 +48,25 @@ Steps to deploy the project:
 
 git clone https://github.com/pasupathi-azure-devops-c2s/social-media-project.git
 
-docker build -t client:latest . -f client.dockerfile 
 docker build -t server:latest . -f server.dockerfile
-
-docker-compose up --build
     
 az login
     
 az acr login --name akscr01sample
 
-docker tag client:latest akscr01sample.azurecr.io/client:latest
-docker tag socket:latest akscr01sample.azurecr.io/socket:latest
+az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
+
 docker tag server:latest akscr01sample.azurecr.io/server:latest
 
-docker push akscr01sample.azurecr.io/client:latest && docker push akscr01sample.azurecr.io/server:latest && docker push akscr01sample.azurecr.io/socket:latest
+docker push akscr01sample.azurecr.io/server:latest 
 
-    
+kubectl apply -f client-deployment.yml
 
 
-2. Deploy to the aks cluster
+docker build -t client:latest . -f client.dockerfile 
 
-az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupathikumar
-kubectl apply -f client-deployment.yml --validate=false
+docker tag client:latest akscr01sample.azurecr.io/client:latest
+
+docker push akscr01sample.azurecr.io/client:latest 
+
 kubectl apply -f server-deployment.yml --validate=false
-kubectl apply -f socket-deployment.yml --validate=false
-
-
-docker rmi -f $(docker images -q)
-
-docker system prune -af
-
-sample-edits
