@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://65.2.83.160:5000" });
+const API = axios.create({ baseURL: "http://13.201.11.1:5000" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
