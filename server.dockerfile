@@ -19,4 +19,4 @@ COPY ./server/ ./
 EXPOSE 5000
 
 # Start the server using Node.js
-ENTRYPOINT ["node", "server.js"]
+ENTRYPOINT ["yarn", "start"]
