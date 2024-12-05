@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'http://3.110.56.89:5000' });
 
 export const createChat = (data) => API.post('/chat/', data);
 
