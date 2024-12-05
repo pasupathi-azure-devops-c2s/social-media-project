@@ -12,7 +12,7 @@ COPY ./client/yarn.lock ./app/ZKU-Social-Media
 RUN yarn install
 
 # Copy the entire client source code
-COPY ./client/ ./
+COPY ./client/ ./app/ZKU-Social-Media
 
 # Build the Angular application
 RUN yarn build --prod
