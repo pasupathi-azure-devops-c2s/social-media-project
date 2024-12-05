@@ -12,6 +12,8 @@ COPY ./server/server.js ./
 # Install dependencies
 RUN yarn install
 
+RUN yarn install cors
+
 # Copy the rest of the server source code
 COPY ./server/ ./
 
