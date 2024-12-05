@@ -22,9 +22,9 @@ dotenv.config();
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
-// Enable CORS for React app running on 65.0.138.126:3000
+// Enable CORS for React app running on 65.2.69.137:3000
 app.use(cors({
-  origin: 'http://65.0.138.126:3000', // Allow requests from React frontend on port 3000
+  origin: 'http://65.2.69.137:3000', // Allow requests from React frontend on port 3000
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
   credentials: true, // Allow cookies or authorization headers
 }));
