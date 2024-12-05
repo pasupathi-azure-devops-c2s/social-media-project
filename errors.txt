@@ -1,4 +1,4 @@
-POST http://13.201.11.1:5000/auth/login net::ERR_CONNECTION_REFUSED
+POST http://172.212.58.96:5000//auth/login net::ERR_CONNECTION_REFUSED
 dispatchXhrRequest @ xhr.js:220
 xhrAdapter @ xhr.js:16
 dispatchRequest @ dispatchRequest.js:58
@@ -34,7 +34,7 @@ AuthActions.js:9 AxiosError {message: 'Network Error', name: 'AxiosError', code
 AuthRequests.js:6 
         
         
-        POST http://13.201.11.1:5000/auth/login net::ERR_CONNECTION_REFUSED
+        POST http://172.212.58.96:5000//auth/login net::ERR_CONNECTION_REFUSED
 dispatchXhrRequest @ xhr.js:220
 xhrAdapter @ xhr.js:16
 dispatchRequest @ dispatchRequest.js:58

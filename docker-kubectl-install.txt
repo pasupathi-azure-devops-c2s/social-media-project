@@ -72,3 +72,6 @@ docker tag client:latest akscr01sample.azurecr.io/client:latest
 docker push akscr01sample.azurecr.io/client:latest 
 
 kubectl apply -f server-deployment.yml --validate=false
+
+
+http://172.212.58.96:5000/
