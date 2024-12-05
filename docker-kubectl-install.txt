@@ -75,3 +75,5 @@ kubectl apply -f server-deployment.yml --validate=false
 
 
 http://172.212.58.96:5000/
+
+http://172.210.92.67:3000/
