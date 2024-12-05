@@ -1,7 +1,7 @@
-# Step 1: Build the Angular application using Node.js
+# Step 1: Build the Node.js server
 FROM node:18 AS build
 
-# Set the working directory
+# Set the working directory for the server
 WORKDIR /app/ZKU-Social-Media-server
 
 # Copy the package.json and yarn.lock files
@@ -12,12 +12,11 @@ COPY ./server/server.js ./
 # Install dependencies
 RUN yarn install
 
-# Copy the entire client source code
+# Copy the rest of the server source code
 COPY ./server/ ./
 
-# Build the Angular application
-RUN yarn build --prod
-
+# Expose the port the server will run on
 EXPOSE 5000
 
-ENTRYPOINT [ "yarn", "server.js" ]
+# Start the server using Node.js
+ENTRYPOINT ["node", "server.js"]
