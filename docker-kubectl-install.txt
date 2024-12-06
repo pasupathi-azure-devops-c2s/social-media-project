@@ -62,8 +62,7 @@ docker tag server:latest akscr01sample.azurecr.io/server:latest
 
 docker push akscr01sample.azurecr.io/server:latest 
 
-kubectl apply -f client-deployment.yml
-
+kubectl apply -f server-deployment.yml --validate=false
 
 docker build -t client:latest . -f client.dockerfile 
 
@@ -71,7 +70,8 @@ docker tag client:latest akscr01sample.azurecr.io/client:latest
 
 docker push akscr01sample.azurecr.io/client:latest 
 
-kubectl apply -f server-deployment.yml --validate=false
+kubectl apply -f client-deployment.yml
+
 
 
 http://172.212.58.96:5000/
