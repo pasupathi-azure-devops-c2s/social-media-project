@@ -14,6 +14,9 @@ RUN yarn install
 # Copy the entire client source code
 COPY ./client/ ./
 
+ENV baseURL=http://client-server-socket-service:5000
+ENV originURL=http://client-server-socket-service:3000
+
 # Build the Angular application
 RUN yarn build --prod
 

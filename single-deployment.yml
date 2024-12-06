@@ -18,6 +18,11 @@ spec:
           image: akscr01sample.azurecr.io/client:latest
           ports:
             - containerPort: 3000  # Angular app port
+          env:
+            - name: origin
+              value: "http://client-server-socket-service:3000"
+            - name: baseURL
+              value: "http://client-server-socket-service:5000"
    
           volumeMounts:
             - name: shared-volume
