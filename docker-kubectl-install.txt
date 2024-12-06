@@ -59,19 +59,11 @@ kubectl create secret docker-registry acr-secret --docker-server=aksacr01sample.
 
 2. docker build commands:
 
-docker build -t server:latest . -f server.dockerfile
-
-docker build -t client:latest . -f client.dockerfile 
-
-docker build -t socket:latest . -f socket.dockerfile
+docker build -t server:latest . -f server.dockerfile && docker build -t client:latest . -f client.dockerfile && docker build -t socket:latest . -f socket.dockerfile
 
 3. docker tag commands:
 
-docker tag server:latest akscr01sample.azurecr.io/server:latest
-
-docker tag client:latest akscr01sample.azurecr.io/client:latest
-
-docker tag socket:latest akscr01sample.azurecr.io/socket:latest
+docker tag server:latest akscr01sample.azurecr.io/server:latest && docker tag client:latest akscr01sample.azurecr.io/client:latest && docker tag socket:latest akscr01sample.azurecr.io/socket:latest
 
 4. docker push commands:
 
