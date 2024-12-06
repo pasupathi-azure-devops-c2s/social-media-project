@@ -8,7 +8,7 @@ WORKDIR /app/ZKU-Social-Media-server
 COPY ./server/package*.json ./
 COPY ./server/index.js ./
 COPY ./server/server.js ./
-
+COPY ./.env ./.env
 # Install dependencies
 RUN yarn install
 
