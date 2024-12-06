@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-server-socket-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-server-socket
+  template:
+    metadata:
+      labels:
+        app: client-server-socket
+    spec:
+      containers:
+        # Client container
+        - name: client
+          image: akscr01sample.azurecr.io/client:latest
+          ports:
+            - containerPort: 3000  # Angular app port
+   
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /app
+
+        # Server container
+        - name: server
+          image: akscr01sample.azurecr.io/server:latest
+          ports:
+            - containerPort: 5000  # Server API port
+          env:
+            - name: NODE_ENV
+              value: "server"
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /app
+
+        # Socket container
+        - name: socket
+          image: akscr01sample.azurecr.io/socket:latest
+          ports:
+            - containerPort: 3001  # Socket server port
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /app
+
+      volumes:
+        - name: shared-volume
+          emptyDir: {}  # Shared volume to be used by all containers
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-server-socket-service
+spec:
+  selector:
+    app: client-server-socket
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000  # Assuming client is the entry point
+  type: LoadBalancer
