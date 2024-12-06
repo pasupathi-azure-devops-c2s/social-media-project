@@ -73,6 +73,13 @@ docker push akscr01sample.azurecr.io/client:latest
 kubectl apply -f client-deployment.yml
 
 
+docker build -t socket:latest . -f socket.dockerfile
+
+docker tag socket:latest akscr01sample.azurecr.io/socket:latest
+
+docker push akscr01sample.azurecr.io/socket:latest
+
+kubectl apply -f socket-deployment.yml
 
 http://135.237.118.199:5000/
 
