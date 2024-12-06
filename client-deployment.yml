@@ -15,6 +15,7 @@ spec:
       containers:
         - name: client
           image: akscr01sample.azurecr.io/client:latest
+          imagePullPolicy: Alway
           ports:
             - containerPort: 3000
           env:
