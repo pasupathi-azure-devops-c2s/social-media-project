@@ -6,6 +6,7 @@ WORKDIR /app/Social-Media-Socket
 
 # Copy the package.json and package-lock.json
 COPY ./socket/package*.json ./
+COPY ./socket/.env ./
 
 # Install dependencies
 RUN yarn install
