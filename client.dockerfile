@@ -7,7 +7,7 @@ WORKDIR /app/ZKU-Social-Media
 # Copy the package.json and yarn.lock files
 COPY ./client/package*.json ./
 COPY ./client/yarn.lock ./
-COPY .env .env
+COPY ./client/.env /
 
 # Install dependencies
 RUN yarn install
