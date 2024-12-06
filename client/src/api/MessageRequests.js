@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const API = axios.create({ baseURL: 'http://172.210.89.106:5000/' });
+const API = axios.create({ baseURL: env.baseURL + '/' });
 
 export const getMessages = (id) => API.get(`/message/${id}`);
 

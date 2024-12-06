@@ -67,11 +67,7 @@ docker tag server:latest akscr01sample.azurecr.io/server:latest && docker tag cl
 
 4. docker push commands:
 
-docker push akscr01sample.azurecr.io/server:latest 
-
-docker push akscr01sample.azurecr.io/client:latest 
-
-docker push akscr01sample.azurecr.io/socket:latest
+docker push akscr01sample.azurecr.io/server:latest && docker push akscr01sample.azurecr.io/client:latest && docker push akscr01sample.azurecr.io/socket:latest
 
 5. AKS Deployment commands:
 
