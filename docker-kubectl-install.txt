@@ -93,6 +93,6 @@ kubectl apply -f socket-deployment.yml
 
 kubectl apply -f single-deployment.yml
 
-http://localhost:5000/
+http://172.210.89.106:5000/
 
-http://localhost:3000/
+http://172.210.89.106:3000/
