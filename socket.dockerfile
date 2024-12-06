@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /app/Social-Media-Socket
 
 # Copy the package.json and package-lock.json
-COPY ./socket/package*.json ./
+COPY ./socket/package*.json ./app/Social-Media-Socket
 
 # Install dependencies
 RUN npm install
