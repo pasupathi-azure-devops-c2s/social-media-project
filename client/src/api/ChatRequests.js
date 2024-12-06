@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const API = axios.create({ baseURL: 'http://172.212.58.96:5000/' });
+const API = axios.create({ baseURL: 'http://server-service:5000/' });
 
 export const createChat = (data) => API.post('/chat/', data);
 

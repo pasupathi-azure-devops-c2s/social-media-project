@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.\
-Open [http://172.210.92.67:3000/](http://172.210.92.67:3000/) to view it in your browser.
+Open [http://client-service:3000/](http://client-service:3000/) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
