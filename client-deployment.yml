@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: client-service
+  name: 4.156.94.175
 spec:
   selector:
     app: client

@@ -13,14 +13,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: social-media-client-service
+                name: social-media-4.156.94.175
                 port:
                   number: 80
           - path: /server
             pathType: Prefix
             backend:
               service:
-                name: social-media-server-service
+                name: social-media-172.171.48.51
                 port:
                   number: 80
           - path: /socket
