@@ -48,7 +48,6 @@ Steps to deploy the project:
 
 git clone https://github.com/pasupathi-azure-devops-c2s/social-media-project.git
 
-docker build -t server:latest . -f server.dockerfile
     
 az login
     
@@ -58,28 +57,41 @@ az aks get-credentials --resource-group AKS-Cluster-RG --name aks-cluster-pasupa
 
 kubectl create secret docker-registry acr-secret --docker-server=aksacr01sample.azurecr.io --docker-username=Pasupathikumar --docker-password=NewPassword1234 --docker-email=kumarmarimuthu99@gmail.com
 
-docker tag server:latest akscr01sample.azurecr.io/server:latest
+2. docker build commands:
 
-docker push akscr01sample.azurecr.io/server:latest 
-
-kubectl apply -f server-deployment.yml --validate=false
+docker build -t server:latest . -f server.dockerfile
 
 docker build -t client:latest . -f client.dockerfile 
 
-docker tag client:latest akscr01sample.azurecr.io/client:latest
-
-docker push akscr01sample.azurecr.io/client:latest 
-
-kubectl apply -f client-deployment.yml
-
-
 docker build -t socket:latest . -f socket.dockerfile
+
+3. docker tag commands:
+
+docker tag server:latest akscr01sample.azurecr.io/server:latest
+
+docker tag client:latest akscr01sample.azurecr.io/client:latest
 
 docker tag socket:latest akscr01sample.azurecr.io/socket:latest
 
+4. docker push commands:
+
+docker push akscr01sample.azurecr.io/server:latest 
+
+docker push akscr01sample.azurecr.io/client:latest 
+
 docker push akscr01sample.azurecr.io/socket:latest
 
+5. AKS Deployment commands:
+
+kubectl apply -f server-deployment.yml --validate=false
+
+kubectl apply -f client-deployment.yml
+
 kubectl apply -f socket-deployment.yml
+
+(or)
+
+kubectl apply -f single-deployment.yml
 
 http://localhost:5000/
 
