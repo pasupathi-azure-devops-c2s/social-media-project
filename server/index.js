@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
 // Enable CORS for React app running on 13.201.11.1:3000
 app.use(cors({
-  origin: process.env.originURL , // Allow requests from React frontend on port 3000
+  origin: process.env.REACT_APP_ORIGIN_URL , // Allow requests from React frontend on port 3000
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
   credentials: true, // Allow cookies or authorization headers
 }));
