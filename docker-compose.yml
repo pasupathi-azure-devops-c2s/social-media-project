@@ -3,7 +3,7 @@ version: "3.8"
 services:
   client:
     build:
-      context: ./client
+      context: client.dockerfile
     ports:
       - "3000:3000"
     depends_on:
@@ -14,7 +14,7 @@ services:
 
   server:
     build:
-      context: ./server
+      context: server.dockerfile
     ports:
       - "5000:5000"
     environment:
@@ -22,15 +22,6 @@ services:
     networks:
       - app-network
 
-  socket:
-    build:
-      context: ./socket
-    ports:
-      - "5001:5001"
-    environment:
-      - NODE_ENV=production
-    networks:
-      - app-network
 
 networks:
   app-network:
