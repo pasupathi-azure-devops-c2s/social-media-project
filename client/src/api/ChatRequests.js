@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const API = axios.create({ baseURL: env.baseURL + '/' });
+const API = axios.create({ baseURL: process.env.baseURL + '/' });
 
 export const createChat = (data) => API.post('/chat/', data);
 
