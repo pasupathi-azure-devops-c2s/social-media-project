@@ -36,15 +36,6 @@ spec:
             - name: shared-volume
               mountPath: /app
 
-        # Socket container
-        - name: socket
-          image: akscr01sample.azurecr.io/socket:latest
-          ports:
-            - containerPort: 5001  # Socket server port
-          volumeMounts:
-            - name: shared-volume
-              mountPath: /app
-
       volumes:
         - name: shared-volume
           emptyDir: {}  # Shared volume to be used by all containers
